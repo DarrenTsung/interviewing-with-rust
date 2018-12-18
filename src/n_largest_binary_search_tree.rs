@@ -96,15 +96,19 @@ mod tests {
     #[test]
     fn works_as_expected() {
         // Tree looks like:
-        //          5
-        //    3         15
-        // 1    4           30
+        //             7
+        //      3            15
+        // 1        5             30
+        //       4
         let head = {
             let e3 = {
                 let e1 = BinarySearchNode::new(1);
-                let e4 = BinarySearchNode::new(4);
+                let e5 = {
+                    let e4 = BinarySearchNode::new(4);
+                    BinarySearchNode::new_with_left(5, e4)
+                };
 
-                BinarySearchNode::new_with_left_and_right(3, e1, e4)
+                BinarySearchNode::new_with_left_and_right(3, e1, e5)
             };
 
             let e15 = {
@@ -112,16 +116,17 @@ mod tests {
                 BinarySearchNode::new_with_right(15, e30)
             };
 
-            BinarySearchNode::new_with_left_and_right(5, e3, e15)
+            BinarySearchNode::new_with_left_and_right(7, e3, e15)
         };
 
         assert_eq!(head.find_nth_largest(0), None);
         assert_eq!(head.find_nth_largest(1), Some(30));
         assert_eq!(head.find_nth_largest(2), Some(15));
-        assert_eq!(head.find_nth_largest(3), Some(5));
-        assert_eq!(head.find_nth_largest(4), Some(4));
-        assert_eq!(head.find_nth_largest(5), Some(3));
-        assert_eq!(head.find_nth_largest(6), Some(1));
-        assert_eq!(head.find_nth_largest(7), None);
+        assert_eq!(head.find_nth_largest(3), Some(7));
+        assert_eq!(head.find_nth_largest(4), Some(5));
+        assert_eq!(head.find_nth_largest(5), Some(4));
+        assert_eq!(head.find_nth_largest(6), Some(3));
+        assert_eq!(head.find_nth_largest(7), Some(1));
+        assert_eq!(head.find_nth_largest(8), None);
     }
 }
