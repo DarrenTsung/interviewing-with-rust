@@ -1,7 +1,3 @@
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
-    }
-}
+mod n_largest_binary_search_tree;
+
+pub use crate::n_largest_binary_search_tree::*;
