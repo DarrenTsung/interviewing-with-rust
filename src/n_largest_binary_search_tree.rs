@@ -50,6 +50,14 @@ impl<T: Clone> BinarySearchNode<T> {
         self.find_nth_largest_recurse(n)
     }
 
+    /// Finds the Nth largest element in a BinarySearchTree
+    ///
+    /// Complexity, where:
+    ///   - N is number of elements in tree.
+    ///   - D is depth of tree.
+    ///
+    /// Time: O(N) (worst case is smallest element which requires full traversal)
+    /// Space: O(D) (due to the size of the stack)
     fn find_nth_largest_recurse(&self, n: u32) -> Option<T> {
         if n == 0 {
             return None;
